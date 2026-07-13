@@ -1,0 +1,1172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #2f5d50;
+    --green-deep: #24493e;
+    --beige: #faf8f4;
+    --beige-deep: #f8f6f1;
+    --gold: #c9a876;
+
+    /* 💡 和柄「青海波（せいがいは）」を極薄で敷く共通模様。色違いを2種用意。 */
+    --pattern-green: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='42' viewBox='0 0 84 42'%3E%3Cg fill='none' stroke='%232f5d50' stroke-width='1'%3E%3Cpath d='M0 42 A42 42 0 0 1 84 42'/%3E%3Cpath d='M0 28 A28 28 0 0 1 56 28'/%3E%3Cpath d='M28 28 A28 28 0 0 1 84 28'/%3E%3Cpath d='M0 14 A14 14 0 0 1 28 14'/%3E%3Cpath d='M28 14 A14 14 0 0 1 56 14'/%3E%3Cpath d='M56 14 A14 14 0 0 1 84 14'/%3E%3C/g%3E%3C/svg%3E");
+    --pattern-gold: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='42' viewBox='0 0 84 42'%3E%3Cg fill='none' stroke='%23c9a876' stroke-width='1'%3E%3Cpath d='M0 42 A42 42 0 0 1 84 42'/%3E%3Cpath d='M0 28 A28 28 0 0 1 56 28'/%3E%3Cpath d='M28 28 A28 28 0 0 1 84 28'/%3E%3Cpath d='M0 14 A14 14 0 0 1 28 14'/%3E%3Cpath d='M28 14 A14 14 0 0 1 56 14'/%3E%3Cpath d='M56 14 A14 14 0 0 1 84 14'/%3E%3C/g%3E%3C/svg%3E");
+
+    /* 💡 麻の葉柄（あさのは）。カードの角にワンポイントで使う小さめ模様。 */
+    --asanoha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='69.3' viewBox='0 0 40 69.3'%3E%3Cg fill='none' stroke='%232f5d50' stroke-width='0.8'%3E%3Cpath d='M20 0 L40 11.5 L40 34.6 L20 46.1 L0 34.6 L0 11.5 Z'/%3E%3Cpath d='M20 0 L20 46.1 M0 11.5 L40 34.6 M40 11.5 L0 34.6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+body{
+    font-family: "Noto Serif JP", serif;
+    background: var(--beige-deep);
+    color:#2d2d2d;
+}
+
+/* ==========================================================================
+   共通：見出し上の飾り（section-tag の下に短い線＋ひし形）
+   ========================================================================== */
+.section-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #edf3ee;
+    color: var(--green);
+    border-radius: 30px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.section-tag::after {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 6px;
+    margin: 14px auto 0 auto;
+    background:
+        linear-gradient(var(--gold), var(--gold)) center / 100% 1px no-repeat,
+        linear-gradient(var(--gold), var(--gold)) center / 1px 100% no-repeat;
+    background-color: transparent;
+    transform: rotate(45deg);
+    opacity: .8;
+}
+
+.about-text .section-tag::after,
+.footer-cta .section-tag::after {
+    margin-left: 0;
+}
+
+.hero .tag {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: #e8efe9;
+    color: var(--green);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero .small {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 18px;
+}
+
+.hero {
+    min-height: 100vh;
+    padding: 40px 8%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 💡 ヒーロー全体にごく薄く波模様を敷いて、上品な奥行きを出す */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--pattern-gold);
+    opacity: .12;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.top-menu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    position: relative;
+    z-index: 999;
+    margin-top: -30px;
+}
+
+.top-menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.top-menu i {
+    font-size: 10px;
+}
+
+.top-menu a:first-child {
+    border: 2px solid var(--green);
+    color: var(--green);
+}
+
+.line-btn {
+    background: var(--green);
+    color: white;
+}
+
+.top-menu a:hover {
+    transform: translateY(-2px);
+}
+
+.hero-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.left {
+    width: 45%;
+    position: relative;
+    z-index: 2;
+}
+
+.right {
+    width: 55%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    padding-right: 30px;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    position: relative;
+}
+
+/* 💡 見出し下に短い金の一本線を添えて、余白を"模様"として使う */
+h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-top: 26px;
+    opacity: .9;
+}
+
+.text {
+    font-size: 17px;
+    line-height: 2;
+    color: #666;
+    max-width: 480px;
+}
+
+.circle {
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background:
+        var(--pattern-green),
+        radial-gradient(circle, #efe7da 0%, #f8f6f1 70%);
+    background-blend-mode: overlay;
+    background-size: 84px 42px, 100% 100%;
+    opacity: .9;
+    filter: blur(.4px);
+}
+
+.logo {
+    position: relative;
+    width: 530px;
+    right: -70px;
+    z-index: 1;
+    border-radius: 12px;
+}
+
+@media(max-width:900px) {
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    .logo {
+        width: 280px;
+    }
+
+    .circle {
+        width: 300px;
+        height: 300px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h1::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .top-menu {
+        justify-content: center;
+    }
+}
+
+
+/* ==========================================================================
+   お悩みセクション
+   ========================================================================== */
+.problems {
+    padding: 90px 8%;
+    background: white;
+    position: relative;
+    text-align: center;
+}
+
+/* 💡 白背景セクションはごく薄い緑の青海波を敷いて単調な余白を締める */
+.problems::before,
+.features::before,
+.campaign::before,
+.access::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--pattern-green);
+    opacity: .05;
+    pointer-events: none;
+}
+
+.problems > *,
+.features > *,
+.campaign > *,
+.access > * {
+    position: relative;
+    z-index: 1;
+}
+
+.problems h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 45px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    flex: 1;
+    background: var(--beige);
+    padding: 36px 20px;
+    border-radius: 25px;
+    text-align: center;
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 💡 カード右上に麻の葉柄をワンポイントで覗かせる */
+.card::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 46px;
+    height: 80px;
+    background-image: var(--asanoha);
+    background-size: 40px 69px;
+    opacity: .35;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .08);
+}
+
+.icon {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--green);
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+    color: var(--green);
+    font-size: 18px;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+@media(max-width:768px) {
+    .cards {
+        flex-direction: column;
+    }
+}
+
+/* ==========================================================================
+   3. 凛について（About Rin）
+   ========================================================================== */
+.about {
+    padding: 90px 8%;
+    background: var(--beige);
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 70px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-image {
+    width: 45%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-circle {
+    position: absolute;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 50%;
+    background: #ece4d7;
+    background-image: var(--pattern-gold);
+    background-size: 84px 42px;
+    background-blend-mode: multiply;
+    z-index: 1;
+}
+
+.about-image img {
+    position: relative;
+    width: 90%;
+    height: auto;
+    border-radius: 18px;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.about-text {
+    width: 50%;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--green);
+    margin-bottom: 25px;
+}
+
+.about-text .lead {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.about-text .description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.9;
+}
+
+@media(max-width: 900px) {
+    .about {
+        padding: 65px 8%;
+    }
+
+    .about-container {
+        flex-direction: column-reverse;
+        gap: 35px;
+    }
+
+    .about-image, .about-text {
+        width: 100%;
+    }
+
+    .about-text h2 {
+        font-size: 28px;
+    }
+}
+
+/* ==========================================================================
+   4. 選ばれる理由（Why Rin）
+   ========================================================================== */
+.features {
+    padding: 90px 8%;
+    background: white;
+    text-align: center;
+    position: relative;
+}
+
+.features h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 45px;
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 26px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    flex: 1;
+    background: var(--beige);
+    padding: 40px 28px;
+    border-radius: 25px;
+    text-align: left;
+    position: relative;
+    transition: .3s;
+    overflow: hidden;
+}
+
+.feature-card::after {
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    right: -14px;
+    width: 46px;
+    height: 80px;
+    background-image: var(--asanoha);
+    background-size: 40px 69px;
+    opacity: .3;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .05);
+}
+
+.feature-num {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--green);
+    opacity: 0.3;
+    margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    color: var(--green);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 14px;
+    position: relative;
+}
+
+@media(max-width: 900px) {
+    .features {
+        padding: 65px 8%;
+    }
+
+    .features-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .features h2 {
+        font-size: 32px;
+        margin-bottom: 32px;
+    }
+}
+
+/* ==========================================================================
+   5. メニュー・料金（Menu & Price）
+   ========================================================================== */
+.menu {
+    padding: 90px 8%;
+    background: var(--beige);
+    text-align: center;
+}
+
+.menu h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+.menu-lead {
+    font-size: 16px;
+    color: var(--green);
+    margin-bottom: 45px;
+    font-weight: 500;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 26px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-card {
+    flex: 1;
+    background: white;
+    padding: 40px 28px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    position: relative;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 💡 リボン（recommend-tag）はカード上端の外側にはみ出すので、
+   模様は下側に置いてカードの overflow を hidden にしない（＝ぶつからない） */
+.menu-card::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 46px;
+    height: 80px;
+    background-image: var(--asanoha);
+    background-size: 40px 69px;
+    opacity: .25;
+    border-radius: 0 0 0 25px;
+    z-index: 0;
+}
+
+.menu-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+.menu-card.featured {
+    border: 2px solid var(--green);
+    transform: scale(1.03);
+}
+.menu-card.featured:hover {
+    transform: translateY(-10px) scale(1.03);
+}
+
+.recommend-tag {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: white;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.menu-time {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+    background: #edf3ee;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin: 0 auto 16px auto;
+}
+
+.menu-card h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--green);
+    margin-bottom: 20px;
+}
+
+.price span {
+    font-size: 14px;
+    color: #777;
+}
+
+.menu-desc {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: left;
+    margin-top: auto;
+}
+
+.menu-note {
+    font-size: 14px;
+    color: #888;
+    margin-top: 36px;
+}
+
+@media(max-width: 900px) {
+    .menu {
+        padding: 65px 8%;
+    }
+
+    .menu-container {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .menu-card.featured {
+        transform: scale(1);
+    }
+    .menu-card.featured:hover {
+        transform: translateY(-10px) scale(1);
+    }
+
+    .menu h2 {
+        font-size: 32px;
+    }
+}
+
+/* ==========================================================================
+   6. キャンペーン・割引（Campaign）
+   ========================================================================== */
+.campaign {
+    padding: 90px 8%;
+    background: white;
+    text-align: center;
+    position: relative;
+}
+
+.campaign h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+.campaign-lead {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 45px;
+}
+
+.campaign-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 26px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.campaign-card {
+    flex: 1;
+    background: var(--beige);
+    padding: 40px 28px;
+    border-radius: 25px;
+    position: relative;
+    text-align: center;
+    transition: .3s;
+    overflow: hidden;
+}
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+}
+
+.campaign-card.special {
+    background: #edf3ee;
+    border: 1px dashed var(--green);
+}
+
+.campaign-card.special::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 46px;
+    height: 80px;
+    background-image: var(--asanoha);
+    opacity: .4;
+}
+
+.campaign-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #777;
+    border: 1px solid #ddd;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: white;
+    margin-bottom: 16px;
+}
+
+.campaign-badge.active {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+}
+
+.campaign-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.discount-price {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 16px;
+}
+
+.campaign-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    text-align: left;
+    position: relative;
+}
+
+.campaign-note {
+    max-width: 800px;
+    margin: 36px auto 0 auto;
+    background: #fdfbf7;
+    border: 1px solid #eaddca;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.campaign-note p {
+    font-size: 15px;
+    color: #555;
+}
+
+.campaign-note span {
+    font-weight: bold;
+    color: var(--green);
+}
+
+@media(max-width: 900px) {
+    .campaign {
+        padding: 65px 8%;
+    }
+
+    .campaign-grid {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .campaign h2 {
+        font-size: 32px;
+    }
+}
+
+/* ==========================================================================
+   7. よくある質問（FAQ）
+   ========================================================================== */
+.faq {
+    padding: 90px 8%;
+    background: var(--beige);
+    text-align: center;
+}
+
+.faq h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+.faq-lead {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 45px;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    padding: 28px 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-item::after {
+    content: "";
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 40px;
+    height: 69px;
+    background-image: var(--asanoha);
+    opacity: .18;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.q-letter {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.faq-question h3 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+}
+
+.faq-answer {
+    margin-top: 14px;
+    padding-left: 38px;
+    border-top: 1px solid #f0eae1;
+    padding-top: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-answer p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.8;
+}
+
+@media(max-width: 900px) {
+    .faq {
+        padding: 65px 8%;
+    }
+
+    .faq h2 {
+        font-size: 32px;
+    }
+
+    .faq-item {
+        padding: 20px;
+    }
+
+    .faq-answer {
+        padding-left: 0;
+    }
+}
+
+/* ==========================================================================
+   8. アクセス・営業情報（Access）
+   ========================================================================== */
+.access {
+    padding: 90px 8%;
+    background: white;
+    text-align: center;
+    position: relative;
+}
+
+.access h2 {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+.access-lead {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 45px;
+}
+
+.access-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.access-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.info-block h3 {
+    font-size: 18px;
+    color: var(--green);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.info-block p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.info-block .address {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.info-block .address span {
+    font-size: 14px;
+    color: #777;
+}
+
+.announcement-box {
+    margin-top: 12px;
+    background: var(--beige);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid var(--green);
+}
+
+.announce-title {
+    font-weight: bold;
+    color: var(--green) !important;
+    margin-bottom: 8px;
+}
+
+.announcement-box p {
+    font-size: 14px;
+    color: #666;
+}
+
+.announcement-box span {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.access-map {
+    width: 50%;
+    min-height: 350px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    background: var(--beige);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    border: 1px dashed #ddd;
+}
+
+.map-placeholder p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+@media(max-width: 900px) {
+    .access {
+        padding: 65px 8%;
+    }
+
+    .access-container {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .access-info, .access-map {
+        width: 100%;
+    }
+
+    .access-map {
+        min-height: 250px;
+    }
+    .map-placeholder {
+        min-height: 250px;
+    }
+
+    .access h2 {
+        font-size: 32px;
+    }
+}
+
+.access-map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+@media(max-width: 900px) {
+    .access-map iframe {
+        min-height: 250px;
+    }
+}
+
+/* ==========================================================================
+   9. フッター＆LINE予約（Footer）
+   ========================================================================== */
+.footer {
+    background: var(--beige);
+    text-align: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--pattern-gold);
+    opacity: .1;
+    pointer-events: none;
+}
+
+.footer-cta {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 8% 80px 8%;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-cta h2 {
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--green);
+    margin-bottom: 20px;
+}
+
+.cta-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 34px;
+}
+
+.footer-line-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--green);
+    color: white;
+    text-decoration: none;
+    padding: 22px 50px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(47, 93, 80, 0.2);
+    transition: .3s;
+    width: 100%;
+    max-width: 500px;
+}
+
+.footer-line-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(47, 93, 80, 0.4);
+    background: var(--green-deep);
+}
+
+.footer-line-btn i {
+    font-size: 24px;
+}
+
+.footer-bottom {
+    background: var(--green);
+    padding: 22px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+}
+
+@media(max-width: 900px) {
+    .footer {
+        padding-top: 60px;
+    }
+
+    .footer-cta {
+        padding-bottom: 60px;
+    }
+
+    .footer-cta h2 {
+        font-size: 28px;
+    }
+
+    .footer-line-btn {
+        padding: 18px 30px;
+        font-size: 16px;
+    }
+}
